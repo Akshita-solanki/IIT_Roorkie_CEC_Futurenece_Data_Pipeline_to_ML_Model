@@ -1,0 +1,11 @@
+customer_ref,loyalty_tier,spend,delivered_orders
+Customer 01,Bronze,7337.7,7
+Customer 02,Bronze,7258.95,8
+Customer 03,Platinum,6921.2,9
+Customer 04,Silver,6433.95,11
+Customer 05,Bronze,6241.4,6
+Customer 06,Silver,6096.75,7
+Customer 07,Silver,5956.35,6
+Customer 08,Bronze,5877.9,4
+Customer 09,Bronze,5798.45,9
+Customer 10,Bronze,5787.2,8

@@ -1,0 +1,5 @@
+reason,exception_rows,absolute_amount_difference
+amount_mismatch,11,560
+missing_success_payment,185,0
+successful_payment_for_non_delivered_order,7,0
+unknown_order,8,0

@@ -13,3 +13,12 @@ airflow.db
 .astro/*.local.yml
 .astro/*.local.yaml
 test_api.py 
+
+# Runtime warehouse files contain ELT raw rows, including customer PII.
+include/warehouse_akshita_elt.duckdb
+include/warehouse_akshita_elt.duckdb.wal
+include/warehouse_akshita_etl.duckdb
+include/warehouse_akshita_etl.duckdb.wal
+
+# Run-specific quarantine files can contain unmasked source data.
+include/quarantine/akshita/

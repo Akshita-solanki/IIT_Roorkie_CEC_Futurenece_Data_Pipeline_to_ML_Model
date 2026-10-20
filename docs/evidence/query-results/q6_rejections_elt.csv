@@ -1,0 +1,30 @@
+source_file,failure_reason,rows_rejected
+customers.csv,future signup_date,3
+orders.csv,delivered order missing delivery_minutes,8
+orders.csv,delivery_minutes must be below 120,6
+orders.csv,discount_pct outside 0–100,3
+orders.csv,duplicate order_id,12
+orders.csv,future order_ts,8
+orders.csv,invalid order_status,4
+orders.csv,invalid order_ts,6
+orders.csv,invalid payment_mode,2
+orders.csv,order amount formula mismatch,19
+orders.csv,quantity must be positive,11
+orders.csv,unknown or invalid customer_id,37
+orders.csv,unknown or invalid product_id,131
+orders.csv,unknown or invalid store_id,314
+orders_2026-10-01_increment.csv,unknown or invalid customer_id,1
+orders_2026-10-01_increment.csv,unknown or invalid product_id,14
+orders_2026-10-01_increment.csv,unknown or invalid store_id,13
+payments.csv,SUCCESS payment amount mismatch,14
+payments.csv,amount_paid must be non-negative,6
+payments.csv,duplicate payment_id,4
+payments.csv,future payment_ts,7
+payments.csv,gateway_ref missing,4
+payments.csv,invalid payment_mode,2
+payments.csv,payment references unknown order_id,8
+products.csv,cost_price exceeds mrp,5
+products.csv,missing category,3
+products.csv,mrp must be positive,1
+stores.csv,capacity_orders_per_day must be positive,1
+stores.csv,missing zone,1

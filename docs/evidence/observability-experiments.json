@@ -1,0 +1,90 @@
+{
+  "created_at": "2026-10-19",
+  "source_data_restored": true,
+  "final_clean_runs": {
+    "etl": "manual__2026-10-19T19:01:09.921049+00:00",
+    "elt": "manual__2026-10-19T19:01:18.024800+00:00",
+    "both_success": true,
+    "rows_extracted_each": 5372,
+    "etl_fact_rows": 2013,
+    "elt_current_order_rows": 2013,
+    "elt_raw_order_rows_after_runs": 49083,
+    "delivered_orders_each": 1827,
+    "delivered_revenue_each_inr": 985561.65,
+    "clean_order_reconciliation_exceptions_each": 211,
+    "amount_mismatch_count_each": 11,
+    "amount_mismatch_absolute_difference_inr_each": 560.0,
+    "etl_dq_checks": 64,
+    "etl_dq_findings": 1466,
+    "elt_dq_checks": 29,
+    "elt_dq_findings": 667
+  },
+  "experiments": [
+    {
+      "number": 1,
+      "name": "happy_path",
+      "etl_run_id": "manual__2026-10-19T19:01:09.921049+00:00",
+      "elt_run_id": "manual__2026-10-19T19:01:18.024800+00:00",
+      "result": "Both complete with successful task states. ETL quarantined 1070 source rows; ELT audit counted 542 rejected current order rows after the bad-row experiment was retained in append-only raw history. Clean-order reconciliation matches at 211 exceptions, including 11 amount mismatches totaling INR 560.00 absolute difference."
+    },
+    {
+      "number": 2,
+      "name": "rerun_idempotency",
+      "result": "Repeated runs retained 2013 ETL fact rows and the same 1827 delivered orders / INR 985561.65 in the ELT current mart; ELT raw history appended each run."
+    },
+    {
+      "number": 3,
+      "name": "increment",
+      "result": "The incremental file contains 160 rows: 150 new order IDs and 10 corrections. Both final current-state outputs match after processing the increment."
+    },
+    {
+      "number": 4,
+      "name": "missing_source",
+      "etl_run_id": "exp_missing_source_etl_1792431859",
+      "elt_run_id": "exp_missing_source_elt_1792432014",
+      "result": "Temporarily removing products.csv put extract_products (ETL) and extract_sources (ELT) into retry. Restoring the file allowed each task to succeed on try 2; both runs completed."
+    },
+    {
+      "number": 5,
+      "name": "five_bad_rows",
+      "etl_run_id": "exp_five_bad_rows_etl_1792431475",
+      "elt_run_id": "exp_five_bad_rows_elt_1792431475",
+      "result": "Five synthetic defects exercised completeness, validity, referential integrity, and timeliness checks. Both runs completed and their DQ records showed the injected failures; the source file was restored."
+    },
+    {
+      "number": 6,
+      "name": "schema_change",
+      "etl_run_id": "exp_schema_change_etl_1792432192",
+      "elt_run_id": "exp_schema_change_elt_1792432846",
+      "result": "Renaming order_amount to order_total failed ETL validate_sources and ELT extract_sources. ELT audit marked the run failed. After restoring the header and correcting the expected customer column to full_name, clearing the run recovered it successfully."
+    },
+    {
+      "number": 7,
+      "name": "volume_50",
+      "etl_run_id": "exp_volume_50_etl_1792431577",
+      "elt_run_id": "exp_volume_50_elt_1792431577",
+      "result": "Both runs completed and recorded orders_volume_min_500 as WARN for the 50-row source."
+    },
+    {
+      "number": 8,
+      "name": "price_distribution_drift",
+      "etl_run_id": "exp_price_drift_100x_S08_etl_1792431667",
+      "elt_run_id": "exp_price_drift_100x_S08_elt_1792431667",
+      "result": "A 100x price mutation for S08 produced orders_unit_price_distribution warnings (167 ETL and 159 ELT findings) and moved S08 revenue to INR 6932735.90."
+    },
+    {
+      "number": 9,
+      "name": "stale_30_day_source",
+      "etl_run_id": "exp_correct_stale_30_days_etl_1792434057",
+      "elt_run_id": "exp_correct_stale_30_days_elt_1792434213",
+      "result": "The maximum order timestamp was set to 30 days before each run. ETL emitted orders_freshness_within_one_day and increment freshness warnings; ELT emitted orders_freshness_within_one_day WARN after its rule was fixed to ignore future-dated rows."
+    },
+    {
+      "number": 10,
+      "name": "clear_and_recovery",
+      "etl_run_id": "exp_schema_change_etl_1792432192",
+      "elt_run_id": "exp_schema_change_elt_1792432846",
+      "result": "After the schema defect was removed, Airflow task instances were cleared. ETL and ELT reran the DAG tasks to success; the ELT test also confirmed that a failed audit task leaves the DAG run failed."
+    }
+  ]
+}

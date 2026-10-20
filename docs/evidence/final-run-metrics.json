@@ -1,0 +1,39 @@
+{
+  "run_ids": {
+    "etl": "manual__2026-10-19T19:01:09.921049+00:00",
+    "elt": "manual__2026-10-19T19:01:18.024800+00:00"
+  },
+  "runs": {
+    "etl": {
+      "status": "SUCCESS",
+      "rows_extracted": 5372,
+      "fact_rows_loaded": 2013,
+      "rows_quarantined": 1070,
+      "dq_checks": 64,
+      "dq_findings": 1466,
+      "critical_checks_with_failures": 31,
+      "warning_checks_with_findings": 7
+    },
+    "elt": {
+      "status": "SUCCESS",
+      "rows_extracted": 5372,
+      "current_order_rows_passing": 2013,
+      "current_order_rows_rejected": 542,
+      "raw_order_rows_after_repeated_runs": 49083,
+      "dq_checks": 29,
+      "dq_findings": 667,
+      "critical_checks_with_failures": 17,
+      "warning_checks_with_findings": 3
+    }
+  },
+  "matching_mart_results": {
+    "delivered_orders": 1827,
+    "delivered_revenue_inr": 985561.65,
+    "clean_order_reconciliation_exceptions": 211,
+    "amount_mismatch_count": 11,
+    "amount_mismatch_absolute_difference_inr": 560.0,
+    "missing_successful_payment_count": 185,
+    "successful_payment_for_non_delivered_count": 7,
+    "unknown_order_payment_count": 8
+  }
+}
